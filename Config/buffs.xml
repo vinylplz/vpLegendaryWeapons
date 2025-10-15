@@ -1,0 +1,102 @@
+<vinylplz>
+
+    <append xpath="//buff[@name='buffStatusCheck01']">
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$maxOnslaughtStacks" operation="set" value="10"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$maxReverseOnslaughtStacks" operation="set" value="20"/>
+        </effect_group>
+    </append>
+
+    <append xpath="/buffs">
+
+        <!-- Onslaught -->
+        <buff name="buffOnslaught" icon="ui_game_symbol_specters_grace">
+            <stack_type value="replace"/>
+            <!--<stack_type value="effect"/>-->
+            <!--<stack_type value="duration"/>
+		    <duration value="10"/>-->
+            <display_value value=".OnslaughtEffectDisplay"/>
+		    <display_value_key value="+{0}%"/>
+
+            <effect_group name="buffOnslaught">
+                <!-- Set .OnslaughtDamageMultiplier -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".OnslaughtDamageMultiplier" operation="set" value=".05"/>
+                          
+                <!-- Calculate damage increase: .OnslaughtDamageBonus = .OnslaughtStacks x .OnslaughtDamageMultiplier -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".OnslaughtDamageBonus" operation="set" value="@.OnslaughtStacks"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".OnslaughtDamageBonus" operation="set" value="@.OnslaughtStacks"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".OnslaughtDamageBonus" operation="set" value="@.OnslaughtStacks"/>                
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".OnslaughtDamageBonus" operation="multiply" value="@.OnslaughtDamageMultiplier"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".OnslaughtDamageBonus" operation="multiply" value="@.OnslaughtDamageMultiplier"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".OnslaughtDamageBonus" operation="multiply" value="@.OnslaughtDamageMultiplier"/>
+
+                <!-- Setup display -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".OnslaughtEffectDisplay" operation="set" value="@.OnslaughtDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".OnslaughtEffectDisplay" operation="set" value="@.OnslaughtDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".OnslaughtEffectDisplay" operation="set" value="@.OnslaughtDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".OnslaughtEffectDisplay" operation="multiply" value="100"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".OnslaughtEffectDisplay" operation="multiply" value="100"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".OnslaughtEffectDisplay" operation="multiply" value="100"/>
+
+                <!-- Apply damage increase -->
+                <passive_effect name="EntityDamage" operation="perc_add" value="@.OnslaughtDamageBonus"/>
+
+                <!-- decrease .OnslaughtStacks by 1/sec -->
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar=".OnslaughtStacks" operation="add" value="-1"/>
+
+                <!-- remove buffOnslaught when .OnslaughtStacks <= 0 -->
+                <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffOnslaught">
+                    <requirement name="CVarCompare" cvar=".OnslaughtStacks" operation="LTE" value="0"/>
+                </triggered_effect>
+                <!-- remove buffOnslaught when player dies -->
+			    <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffOnslaught"/>
+
+                <!-- Reset counters and display -->
+                <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".OnslaughtStacks,.OnslaughtEffectDisplay,.OnslaughtDamageBonus,.OnslaughtDamageMultiplier"/>
+            </effect_group>
+        </buff>
+
+        <!-- Reverse Onslaught -->
+        <buff name="buffReverseOnslaught" icon="ui_game_symbol_specters_grace">
+            <stack_type value="replace"/>
+
+            <display_value value=".ReverseOnslaughtEffectDisplay"/>
+		    <display_value_key value="+{0}%"/>
+
+            <effect_group name="buffReverseOnslaught">
+                <!-- Set .ReverseOnslaughtDamageMultiplier -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtDamageMultiplier" operation="set" value=".05"/>
+                          
+                <!-- Calculate damage increase: .ReverseOnslaughtDamageBonus = .ReverseOnslaughtStacks x .ReverseOnslaughtDamageMultiplier -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="set" value="@.ReverseOnslaughtStacks"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="set" value="@.ReverseOnslaughtStacks"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="set" value="@.ReverseOnslaughtStacks"/>                
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="multiply" value="@.ReverseOnslaughtDamageMultiplier"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="multiply" value="@.ReverseOnslaughtDamageMultiplier"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="multiply" value="@.ReverseOnslaughtDamageMultiplier"/>
+
+                <!-- Setup display -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="set" value="@.ReverseOnslaughtDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="set" value="@.ReverseOnslaughtDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="set" value="@.ReverseOnslaughtDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="multiply" value="100"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="multiply" value="100"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="multiply" value="100"/>
+
+                <!-- Apply damage increase -->
+                <passive_effect name="EntityDamage" operation="perc_add" value="@.ReverseOnslaughtDamageBonus"/>
+
+                <!-- increase .ReverseOnslaughtStacks by 1/sec -->
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar=".ReverseOnslaughtStacks" operation="add" value="1">
+                    <requirement name="CVarCompare" cvar=".ReverseOnslaughtStacks" operation="LT" value="@$maxReverseOnslaughtStacks" target="self"/>
+                </triggered_effect>
+
+                <!-- remove buffReverseOnslaught when player dies -->
+			    <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffReverseOnslaught"/>
+
+                <!-- Reset counters and display -->
+                <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".ReverseOnslaughtEffectDisplay,.ReverseOnslaughtDamageBonus,.ReverseOnslaughtDamageMultiplier"/>
+            </effect_group>
+        </buff>
+    </append>
+</vinylplz>

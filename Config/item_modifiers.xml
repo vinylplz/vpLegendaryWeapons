@@ -1,0 +1,70 @@
+<vinylplz>
+
+	<!--<setattribute xpath="//item_property_overrides[@name='gunShotgunT2PumpShotgun']" name="name">gunShotgunT2PumpShotgun*</setattribute>-->
+
+	<append xpath="/item_modifiers">
+
+		<!-- T1 -->
+		<!-- Furious -->
+		<item_modifier name="modVpLegendaryT1Furious" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="726B38"/>
+
+			<!-- Primary Attack -->
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar=".OnslaughtStacks" operation="LT" value="@$maxOnslaughtStacks" target="self"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="self" cvar=".OnslaughtStacks" operation="add" value="1"/>
+			</effect_group>
+			<!-- Secondary Attack -->
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar=".OnslaughtStacks" operation="LT" value="@$maxOnslaughtStacks" target="self"/>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="self" cvar=".OnslaughtStacks" operation="add" value="1"/>
+			</effect_group>
+			<!-- Secondary Attack Graze -->
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar=".OnslaughtStacks" operation="LT" value="@$maxOnslaughtStacks" target="self"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="ModifyCVar" target="self" cvar=".OnslaughtStacks" operation="add" value="1"/>
+			</effect_group>
+			<!-- Apply Buff -->	
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar=".OnslaughtStacks" operation="GT" value="0" target="self"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="AddBuff" target="self" buff="buffOnslaught"/>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="self" buff="buffOnslaught"/>
+			</effect_group>
+		</item_modifier>
+
+		<!-- Gunslingers -->
+		<item_modifier name="modVpLegendaryT1Gunslingers" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="726B38"/>
+
+			<!-- Primary Attack -->
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar=".ReverseOnslaughtStacks" operation="GT" value="0" target="self"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="self" cvar=".ReverseOnslaughtStacks" operation="add" value="-1"/>
+			</effect_group>
+			<!-- Secondary Attack -->
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar=".ReverseOnslaughtStacks" operation="GT" value="0" target="self"/>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" target="self" cvar=".ReverseOnslaughtStacks" operation="add" value="-1"/>
+			</effect_group>
+			<!-- Secondary Attack Graze -->
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar=".ReverseOnslaughtStacks" operation="GT" value="0" target="self"/>
+					<triggered_effect trigger="onSelfSecondaryActionGrazeHit" action="ModifyCVar" target="self" cvar=".ReverseOnslaughtStacks" operation="add" value="-1"/>
+			</effect_group>
+			<!-- Apply Buff on item equip -->	
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffReverseOnslaught"/>
+			</effect_group>
+			<!-- Remove Buff on item unequip -->
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffReverseOnslaught"/>
+			</effect_group>
+		</item_modifier>
+
+	</append>
+
+</vinylplz>
