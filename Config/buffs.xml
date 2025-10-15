@@ -40,6 +40,7 @@
 
                 <!-- Apply damage increase -->
                 <passive_effect name="EntityDamage" operation="perc_add" value="@.OnslaughtDamageBonus"/>
+                <passive_effect name="BlockDamage" operation="perc_add" value="@.OnslaughtDamageBonus" tags="tool"/>
 
                 <!-- decrease .OnslaughtStacks by 1/sec -->
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar=".OnslaughtStacks" operation="add" value="-1"/>
@@ -58,7 +59,7 @@
 
         <!-- Reverse Onslaught -->
         <buff name="buffReverseOnslaught" icon="ui_game_symbol_specters_grace">
-            <stack_type value="replace"/>
+            <stack_type value="ignore"/>
 
             <display_value value=".ReverseOnslaughtEffectDisplay"/>
 		    <display_value_key value="+{0}%"/>
@@ -69,23 +70,20 @@
                           
                 <!-- Calculate damage increase: .ReverseOnslaughtDamageBonus = .ReverseOnslaughtStacks x .ReverseOnslaughtDamageMultiplier -->
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="set" value="@.ReverseOnslaughtStacks"/>
-                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="set" value="@.ReverseOnslaughtStacks"/>
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="set" value="@.ReverseOnslaughtStacks"/>                
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="multiply" value="@.ReverseOnslaughtDamageMultiplier"/>
-                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="multiply" value="@.ReverseOnslaughtDamageMultiplier"/>
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtDamageBonus" operation="multiply" value="@.ReverseOnslaughtDamageMultiplier"/>
 
                 <!-- Setup display -->
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="set" value="@.ReverseOnslaughtDamageBonus"/>
-                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="set" value="@.ReverseOnslaughtDamageBonus"/>
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="set" value="@.ReverseOnslaughtDamageBonus"/>
                 <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="multiply" value="100"/>
-                <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="multiply" value="100"/>
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ReverseOnslaughtEffectDisplay" operation="multiply" value="100"/>
 
                 <!-- Apply damage increase -->
                 <passive_effect name="EntityDamage" operation="perc_add" value="@.ReverseOnslaughtDamageBonus"/>
-
+                <passive_effect name="BlockDamage" operation="perc_add" value="@.ReverseOnslaughtDamageBonus" tags="tool"/>
+                
                 <!-- increase .ReverseOnslaughtStacks by 1/sec -->
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar=".ReverseOnslaughtStacks" operation="add" value="1">
                     <requirement name="CVarCompare" cvar=".ReverseOnslaughtStacks" operation="LT" value="@$maxReverseOnslaughtStacks" target="self"/>
