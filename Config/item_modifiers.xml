@@ -122,6 +122,43 @@
 			</effect_group>
 		</item_modifier>
 
+		<!-- Nocturnal -->
+		<item_modifier name="modVpLegendaryT1Nocturnal" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="84009b"/> <!-- Purple -->
+
+			<effect_group tiered="false">
+				<requirement name="IsNight" />
+					<passive_effect name="EntityDamage" operation="perc_add" value="1"/>
+					<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="tool"/>
+			</effect_group>
+		</item_modifier>
+
+		<!-- Quad -->
+		<item_modifier name="modVpLegendaryT1Quad" installable_tags="gun" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="517AC0"/> <!-- Blue -->
+
+			<effect_group>
+				<passive_effect name="MagazineSize" operation="perc_add" value="3"/>
+			</effect_group>
+		</item_modifier>
+
+		<!-- Zombie Slayers -->
+		<item_modifier name="modVpLegendaryT1ZombieSlayers" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="00ff00"/> <!-- Lime Green -->
+
+			<effect_group>
+				<requirement name="EntityTagCompare" target="other" tags="zombie"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
+			</effect_group>
+		</item_modifier>
+		
+
 	</append>
 
 </vinylplz>

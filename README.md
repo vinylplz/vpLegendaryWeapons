@@ -12,8 +12,11 @@ This is currently a work-in-progress.  Please do not upload to Nexus or other mo
 | Executioners | - | X |
 | Furious | Onslaught | X |
 | Gunslingers | Reverse Onslaught | X |
-| Hitmans | | |
 | Instigating | - | X |
 | Juggernauts| Juggernauts | X |
+| Nocturnal | - | X |
+| Quad | - | X |
+| Zombie Slayers | - | X |
 | Wounding | | |
 | Vampires | | |
+| Hitmans | | |
