@@ -5,6 +5,22 @@
 	<append xpath="/item_modifiers">
 
 		<!-- ============= T1 ============= -->
+		<!-- Bloodied -->
+		<item_modifier name="modVpLegendaryT1Bloodied" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="B086AF"/> <!-- Pink -->
+
+			<!-- Apply Buff continuously while holding item -->	
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddBuff" target="self" buff="buffBloodied"/>
+			</effect_group>
+			<!-- Remove Buff on item unequip -->
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffBloodied"/>
+			</effect_group>
+		</item_modifier>
+
 		<!-- Executioners -->
 		<item_modifier name="modVpLegendaryT1Executioners" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
@@ -87,6 +103,22 @@
 			<effect_group>
 				<requirement name="StatComparePercCurrentToMax" target="other" stat="Health" operation="GTE" value="0.9"/>
 					<passive_effect name="EntityDamage" operation="perc_add" value="1"/>
+			</effect_group>
+		</item_modifier>
+
+		<!-- Juggernauts -->
+		<item_modifier name="modVpLegendaryT1Juggernauts" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="504235"/> <!-- Brown -->
+
+			<!-- Apply Buff continuously while holding item -->	
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfPrimaryActionUpdate" action="AddBuff" target="self" buff="buffJuggernauts"/>
+			</effect_group>
+			<!-- Remove Buff on item unequip -->
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffJuggernauts"/>
 			</effect_group>
 		</item_modifier>
 

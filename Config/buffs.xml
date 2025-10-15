@@ -5,9 +5,116 @@
             <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$maxOnslaughtStacks" operation="set" value="10"/>
             <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$maxReverseOnslaughtStacks" operation="set" value="20"/>
         </effect_group>
+        <effect_group name="calculateCurrentHealthPerc">
+            <!-- "Calculate" .CurrentHealthPerc -->
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="LT" value="0.05"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.05">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.05"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.1">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.1"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.15">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.15"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.2">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.2"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.25">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.25"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.3">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.3"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.35">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.35"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.4">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.4"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.45">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.45"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.5">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.5"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.55">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.55"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.6">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.6"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.65">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.65"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.7">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.7"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.75">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.75"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.8">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.8"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.85">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.85"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.9">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.9"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="0.95">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="0.95"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".CurrentHealthPerc" operation="set" value="1">
+                <requirement name="StatComparePercCurrentToMax" target="self" stat="Health" operation="GTE" value="1"/></triggered_effect>         
+        </effect_group>
     </append>
 
     <append xpath="/buffs">
+
+        <!-- Bloodied -->
+        <buff name="buffBloodied" name_key="buffBloodiedName" description_key="buffBloodiedDesc" icon="ui_game_symbol_critical">
+            <stack_type value="ignore"/>
+            <display_value value=".BloodiedEffectDisplay"/>
+            <display_value_key value="+{0}%"/>
+
+            <effect_group name="buffBloodied">
+                <!-- Set .BloodiedDamageMultiplier -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BloodiedDamageMultiplier" operation="set" value="1.25"/>
+
+                <!-- Calculate damage increase: .BloodiedDamageBonus = (1 - .CurrentHealthPerc) x .BloodiedDamageMultiplier -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BloodiedDamageBonus" operation="set" value="1"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BloodiedDamageBonus" operation="subtract" value="@.CurrentHealthPerc"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BloodiedDamageBonus" operation="multiply" value="@.BloodiedDamageMultiplier"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BloodiedDamageBonus" operation="set" value="1"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BloodiedDamageBonus" operation="subtract" value="@.CurrentHealthPerc"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BloodiedDamageBonus" operation="multiply" value="@.BloodiedDamageMultiplier"/>
+
+                <!-- Setup display -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BloodiedEffectDisplay" operation="set" value="@.BloodiedDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BloodiedEffectDisplay" operation="set" value="@.BloodiedDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".BloodiedEffectDisplay" operation="multiply" value="100"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".BloodiedEffectDisplay" operation="multiply" value="100"/>
+
+                <!-- Apply damage increase -->
+                <passive_effect name="EntityDamage" operation="perc_add" value="@.BloodiedDamageBonus"/>
+                <passive_effect name="BlockDamage" operation="perc_add" value="@.BloodiedDamageBonus" tags="tool"/>
+
+                <!-- Reset counters and display -->
+                <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".BloodiedDamageBonus,.BloodiedDamageMultiplier,.BloodiedEffectDisplay"/>
+            </effect_group>
+
+        </buff>
+            
+        <!-- Juggernauts -->
+        <buff name="buffJuggernauts" name_key="buffJuggernautsName" description_key="buffJuggernautsDesc" icon="ui_game_symbol_twitch_strength_melee">
+            <stack_type value="ignore"/>
+            <display_value value=".JuggernautsEffectDisplay"/>
+            <display_value_key value="+{0}%"/>
+
+            <effect_group name="buffJuggernauts">                                          
+                <!-- Calculate damage increase: .JuggernautsDamageBonus = .CurrentHealthPerc / 2 -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".JuggernautsDamageBonus" operation="set" value="@.CurrentHealthPerc"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".JuggernautsDamageBonus" operation="divide" value="2"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".JuggernautsDamageBonus" operation="set" value="@.CurrentHealthPerc"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".JuggernautsDamageBonus" operation="divide" value="2"/>
+
+                <!-- Setup display -->
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".JuggernautsEffectDisplay" operation="set" value="@.JuggernautsDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".JuggernautsEffectDisplay" operation="set" value="@.JuggernautsDamageBonus"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".JuggernautsEffectDisplay" operation="multiply" value="100"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".JuggernautsEffectDisplay" operation="multiply" value="100"/>
+
+                <!-- Apply damage increase -->
+                <passive_effect name="EntityDamage" operation="perc_add" value="@.JuggernautsDamageBonus"/>
+                <passive_effect name="BlockDamage" operation="perc_add" value="@.JuggernautsDamageBonus" tags="tool"/>
+
+                <!-- Reset counters and display -->
+                <triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".JuggernautsDamageBonus,.JuggernautsDamageMultiplier,.JuggernautsEffectDisplay"/>
+            </effect_group>
+        </buff>
 
         <!-- Onslaught -->
         <buff name="buffOnslaught" name_key="buffOnslaughtName" description_key="buffOnslaughtDesc" icon="ui_game_symbol_specters_grace">
