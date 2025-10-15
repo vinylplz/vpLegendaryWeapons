@@ -9,7 +9,7 @@
 		<item_modifier name="modVpLegendaryT1Furious" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
-			<property name="CustomIconTint" value="726B38"/>
+			<property name="CustomIconTint" value="726B38"/> <!-- Yellow -->
 
 			<!-- Primary Attack -->
 			<effect_group tiered="false">
@@ -38,7 +38,7 @@
 		<item_modifier name="modVpLegendaryT1Gunslingers" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
-			<property name="CustomIconTint" value="726B38"/>
+			<property name="CustomIconTint" value="8F5A29"/> <!-- Orange -->
 
 			<!-- Primary Attack -->
 			<effect_group tiered="false">
