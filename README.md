@@ -8,10 +8,11 @@ This is currently a work-in-progress.  Please do not upload to Nexus or other mo
 
 | Mod | Buff | Status |
 |-----|------|--------|
+| Bloodied | | |
+| Executioners | - | X |
 | Furious | Onslaught | X |
 | Gunslingers | Reverse Onslaught | X |
-| Vampires | | |
-| Instigating | | |
-| Bloodied | | |
-| Wounding | | |
 | Hitmans | | |
+| Instigating | - | X |
+| Wounding | | |
+| Vampires | | |

@@ -4,7 +4,19 @@
 
 	<append xpath="/item_modifiers">
 
-		<!-- T1 -->
+		<!-- ============= T1 ============= -->
+		<!-- Executioners -->
+		<item_modifier name="modVpLegendaryT1Executioners" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="444444"/> <!-- Black -->
+
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" target="other" stat="Health" operation="LTE" value=".4"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="1"/>
+			</effect_group>
+		</item_modifier>
+
 		<!-- Furious -->
 		<item_modifier name="modVpLegendaryT1Furious" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
@@ -63,6 +75,18 @@
 			<!-- Remove Buff on item unequip -->
 			<effect_group tiered="false">
 				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffReverseOnslaught"/>
+			</effect_group>
+		</item_modifier>
+
+		<!-- Instigating -->
+		<item_modifier name="modVpLegendaryT1Instigating" installable_tags="weapon,tool" modifier_tags="legendaryT1" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="cntFootlockerClosedWhite"/>
+			<property name="CustomIconTint" value="757575"/> <!-- Grey -->
+
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" target="other" stat="Health" operation="GTE" value="0.9"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="1"/>
 			</effect_group>
 		</item_modifier>
 
