@@ -1,0 +1,13 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate Text
+buffOnslaughtDesc,buffs,Buff,,,"Onslaught grants +5% damage per stack, up to 10 stacks.  Lose 1 stack per second.",
+buffOnslaughtName,buffs,Buff,,,Onslaught,
+buffReverseOnslaughtDesc,buffs,Buff,,,"Reverse Onslaught grants +5% damage per stack, up to 20 stacks.  Gain 1 stack per second.  Lose 1 stack when hitting an enemy.",
+buffReverseOnslaughtName,buffs,Buff,,,Reverse Onslaught,
+,,,,,,
+gunShotgunT2PumpShotgun_Furious,items,Gun,,,Furious Shotgun [7D23E3](VP)[-],
+gunShotgunT2PumpShotgun_FuriousDesc,items,Gun,,,A Furious Pump Action Shotgun,
+,,,,,,
+modVpLegendaryT1Furious,item_modifiers,Mod,,,★ Furious Mod [7D23E3](VP)[-],
+modVpLegendaryT1FuriousDesc,item_modifiers,Mod,,,+1 Onslaught stack on hit,
+modVpLegendaryT1Gunslingers,item_modifiers,Mod,,,★ Gunslingers Mod [7D23E3](VP)[-],
+modVpLegendaryT1GunslingersDesc,item_modifiers,Mod,,,Grants Reverse Onslaught buff,

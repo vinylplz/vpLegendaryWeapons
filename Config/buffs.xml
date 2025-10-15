@@ -10,7 +10,7 @@
     <append xpath="/buffs">
 
         <!-- Onslaught -->
-        <buff name="buffOnslaught" icon="ui_game_symbol_specters_grace">
+        <buff name="buffOnslaught" name_key="buffOnslaughtName" description_key="buffOnslaughtDesc" icon="ui_game_symbol_specters_grace">
             <stack_type value="replace"/>
             <!--<stack_type value="effect"/>-->
             <!--<stack_type value="duration"/>
@@ -58,7 +58,7 @@
         </buff>
 
         <!-- Reverse Onslaught -->
-        <buff name="buffReverseOnslaught" icon="ui_game_symbol_specters_grace">
+        <buff name="buffReverseOnslaught" name_key="buffReverseOnslaughtName" description_key="buffReverseOnslaughtDesc" icon="ui_game_symbol_specters_grace">
             <stack_type value="ignore"/>
 
             <display_value value=".ReverseOnslaughtEffectDisplay"/>
